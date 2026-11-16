@@ -130,7 +130,7 @@ jobs:
                 <repositories>
                   <repository>
                     <id>github</id>
-                    <url>https://maven.pkg.github.com/laasilva/dracolich-user-api</url>
+                    <url>https://maven.pkg.github.com/ixian-works/dracolich-user-api</url>
                     <snapshots>
                       <enabled>true</enabled>
                     </snapshots>
@@ -212,7 +212,7 @@ jobs:
       - name: Checkout dracolich-helm
         uses: actions/checkout@v4
         with:
-          repository: laasilva/dracolich-helm
+          repository: Ixian-Works/dracolich-helm
           token: ${{ secrets.DRACOLICH_HELM_PAT }}
           path: dracolich-helm
 

@@ -318,6 +318,6 @@ Coverage is thin — 3 test classes against 31 main classes.
 
 ---
 
-Part of the [Dracolich](https://github.com/laasilva?tab=repositories&q=dracolich) platform. For the
+Part of the [Dracolich](https://github.com/orgs/Ixian-Works/repositories?q=dracolich) platform. For the
 cross-repo picture — service topology, release pipeline, shared conventions — see the workspace guide
 at `~/Dev/Dracolich/CLAUDE.md`.
