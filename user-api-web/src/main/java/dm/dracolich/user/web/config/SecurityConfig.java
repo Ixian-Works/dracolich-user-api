@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.ServerAuthenticationEntryPoint;
 import org.springframework.security.web.server.authorization.ServerAccessDeniedHandler;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @Configuration
@@ -48,7 +49,18 @@ public class SecurityConfig {
 
     @Bean
     public JwtAuthenticationWebFilter jwtAuthenticationWebFilter(JwtTokenValidator tokenValidator) {
-        return new JwtAuthenticationWebFilter(tokenValidator);
+        return new JwtAuthenticationWebFilter(tokenValidator, SecurityConfig::tokenIgnored);
+    }
+
+    /**
+     * The bearer token is ignored on the sign-in, refresh and registration endpoints. A player arrives
+     * there holding a stale token, and since forge 8.1.3 a bad token is a 401: without this, an expired
+     * token would stop its holder from signing in again. The path is read within the application, so
+     * the service's base path doesn't matter.
+     */
+    static boolean tokenIgnored(ServerWebExchange exchange) {
+        String path = exchange.getRequest().getPath().pathWithinApplication().value();
+        return path.equals("/auth") || path.startsWith("/auth/");
     }
 
     @Bean
