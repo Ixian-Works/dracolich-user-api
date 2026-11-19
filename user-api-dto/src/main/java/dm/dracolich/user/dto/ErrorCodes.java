@@ -13,7 +13,10 @@ public enum ErrorCodes implements ErrorCode {
     DMD017("DMD017", "Invalid or expired refresh token."),
     DMD018("DMD018", "Password does not meet minimum requirements."),
     DMD019("DMD019", "Email address is not valid."),
-    DMD020("DMD020", "Failed to send confirmation email.");
+    DMD020("DMD020", "Failed to send confirmation email."),
+    DMD051("DMD051", "This account is already confirmed."),
+    DMD052("DMD052", "This password reset link is not valid. It may have been used or have expired."),
+    DMD053("DMD053", "The current password is wrong.");
 
     private final String code;
     private final String message;
