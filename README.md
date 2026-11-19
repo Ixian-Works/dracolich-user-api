@@ -266,6 +266,35 @@ Revokes a refresh token.
 
 ---
 
+### GET `/users/me`
+
+The signed-in player's own account. Send the access token as `Authorization: Bearer <token>`. The
+account is read from the player in the token: the call takes no id, so no player can read another's.
+It never returns a password hash or a token.
+
+**Success (200):**
+
+```json
+{
+  "success": true,
+  "httpStatus": "OK",
+  "message": "Request processed successfully",
+  "payload": {
+    "id": "665f1c2e8b3a4d0012ab34cd",
+    "username": "jace",
+    "email": "jace@example.com",
+    "accountStatus": "ACTIVE",
+    "createdAt": "2026-11-01T10:00:00Z"
+  },
+  "errors": null
+}
+```
+
+**401:** no access token, or one that isn't valid. **404 (`DMD009`):** a valid token whose account no
+longer exists.
+
+---
+
 ## Using the Access Token
 
 Include the access token in the `Authorization` header for protected endpoints across all Dracolich services:
